@@ -20,7 +20,7 @@ fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 
-def get_fruityvice_data (this_fruit_choice):
+def get_fruityvice_data(this_fruit_choice):
   fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
   fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
   return fruityvice_normalized
@@ -46,7 +46,7 @@ except URLError as e:
 
 streamlit.header("The fruit load list contains:")
 #snowflake function
-def get_fruit_load_list ():
+def get_fruit_load_list():
   with my_cnx.cursor as my_cur:
     my_cur.execute("SELECT * from fruit_load_list")
     return my_cur.fetchall()
